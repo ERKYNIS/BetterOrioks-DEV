@@ -31,7 +31,6 @@ import betterorioks.composeapp.generated.resources.content_description_clear
 import betterorioks.composeapp.generated.resources.content_description_notifications_info
 import betterorioks.composeapp.generated.resources.info
 import betterorioks.composeapp.generated.resources.logo
-import betterorioks.composeapp.generated.resources.logo_dev
 import betterorioks.composeapp.generated.resources.news
 import betterorioks.composeapp.generated.resources.news_notifications
 import betterorioks.composeapp.generated.resources.no_notifications
@@ -200,19 +199,11 @@ fun NotificationItem(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if(stringResource(Res.string.app_name).contains("DEV")) {
-                    Image(
-                        painter = painterResource(Res.drawable.logo_dev),
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                } else {
-                    Image(
-                        painter = painterResource(Res.drawable.logo),
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
+                Image(
+                    painter = painterResource(Res.drawable.logo),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
                 LargeSpacer()
                 Text(
                     "BetterOrioks • ${BetterOrioksFormats.NEWS_DATE_TIME_FORMAT.format(createdAt)}",

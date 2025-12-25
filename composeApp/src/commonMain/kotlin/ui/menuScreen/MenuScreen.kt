@@ -7,6 +7,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,6 +37,7 @@ import betterorioks.composeapp.generated.resources.Res
 import betterorioks.composeapp.generated.resources.exit
 import betterorioks.composeapp.generated.resources.exit_alert_text
 import betterorioks.composeapp.generated.resources.github
+import betterorioks.composeapp.generated.resources.logo
 import betterorioks.composeapp.generated.resources.news
 import betterorioks.composeapp.generated.resources.notifications
 import betterorioks.composeapp.generated.resources.profile
@@ -74,8 +76,9 @@ import utils.UsefulUrls
 fun UserInfoContent(
     userInfo: UserInfo
 ) {
-    GradientIcon(
+    Image(
         painter = painterResource(Res.drawable.profile),
+        contentDescription = null,
         modifier = Modifier.size(80.dp)
     )
     SmallSpacer()

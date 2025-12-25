@@ -14,8 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationCompat
 import betterorioks.composeapp.generated.resources.Res
 import betterorioks.composeapp.generated.resources.app_name
-import betterorioks.composeapp.generated.resources.logo
-import betterorioks.composeapp.generated.resources.logo_dev
 import com.studentapp.betterorioks.MainActivity
 import com.studentapp.betterorioks.R
 import kotlinx.serialization.encodeToString

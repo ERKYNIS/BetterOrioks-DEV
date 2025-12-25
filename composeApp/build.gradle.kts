@@ -94,38 +94,26 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 117
-        versionName = "1.7"
+        versionName = "1.7.1"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    flavorDimensions += "environment"
-    productFlavors {
-        create("dev") {
-            dimension = "environment"
+    buildTypes {
+        debug {
+            isDebuggable = true
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
+
             buildConfigField("String", "APP_NAME", "\"BetterOrioks DEV\"")
             resValue("string", "app_name", "BetterOrioks DEV")
-            manifestPlaceholders["appIcon"] = "@mipmap/logo_dev"
-            manifestPlaceholders["appRoundIcon"] = "@mipmap/logo_dev_round"
         }
-        create("prod") {
-            dimension = "environment"
-            buildConfigField("String", "APP_NAME", "\"BetterOrioks\"")
-            resValue("string", "app_name", "BetterOrioks")
-            manifestPlaceholders["appIcon"] = "@mipmap/logo"
-            manifestPlaceholders["appRoundIcon"] = "@mipmap/logo_round"
-        }
-    }
-    buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
             ndk.debugSymbolLevel = "FULL"
-
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

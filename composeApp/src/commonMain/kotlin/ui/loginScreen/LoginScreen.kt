@@ -41,7 +41,6 @@ import betterorioks.composeapp.generated.resources.Res
 import betterorioks.composeapp.generated.resources.app_name
 import betterorioks.composeapp.generated.resources.login
 import betterorioks.composeapp.generated.resources.logo
-import betterorioks.composeapp.generated.resources.logo_dev
 import betterorioks.composeapp.generated.resources.password
 import betterorioks.composeapp.generated.resources.telegram_filled
 import betterorioks.composeapp.generated.resources.visibility
@@ -68,19 +67,11 @@ fun StaticLogo(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        if(stringResource(Res.string.app_name).contains("DEV")) {
-            Image(
-                painter = painterResource(Res.drawable.logo_dev),
-                contentDescription = null,
-                modifier = Modifier.size(150.dp)
-            )
-        } else {
-            Image(
-                painter = painterResource(Res.drawable.logo),
-                contentDescription = null,
-                modifier = Modifier.size(150.dp)
-            )
-        }
+        Image(
+            painter = painterResource(Res.drawable.logo),
+            contentDescription = null,
+            modifier = Modifier.size(150.dp)
+        )
         if (showSubtitle) Text(stringResource(Res.string.app_name), style = MaterialTheme.typography.displaySmall)
     }
 }

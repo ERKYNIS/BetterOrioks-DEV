@@ -49,12 +49,12 @@ import androidx.compose.ui.unit.dp
 import betterorioks.composeapp.generated.resources.Refresh
 import betterorioks.composeapp.generated.resources.Res
 import betterorioks.composeapp.generated.resources.arrow_drop_down
-import betterorioks.composeapp.generated.resources.cat
+import betterorioks.composeapp.generated.resources.semester_end
 import betterorioks.composeapp.generated.resources.change_lesson_time
-import betterorioks.composeapp.generated.resources.clouds
+import betterorioks.composeapp.generated.resources.empty
 import betterorioks.composeapp.generated.resources.drop_down_menu
 import betterorioks.composeapp.generated.resources.free_day
-import betterorioks.composeapp.generated.resources.gold_star
+import betterorioks.composeapp.generated.resources.no_lessons
 import betterorioks.composeapp.generated.resources.loading_schedule
 import betterorioks.composeapp.generated.resources.loading_schedule_from_web
 import betterorioks.composeapp.generated.resources.no_schedule
@@ -391,10 +391,10 @@ fun EmptyScheduleItem(
 
         if (isLastPage) {
             string = stringResource(Res.string.semester_end)
-            image = painterResource(Res.drawable.cat)
+            image = painterResource(Res.drawable.semester_end)
         } else {
             string = stringResource(Res.string.free_day)
-            image = painterResource(Res.drawable.gold_star)
+            image = painterResource(Res.drawable.no_lessons)
         }
 
         Spacer(Modifier.weight(1F))
@@ -675,7 +675,7 @@ fun EmptySchedule(modifier: Modifier = Modifier) {
     ) {
         item {
             Image(
-                painterResource(Res.drawable.clouds),
+                painterResource(Res.drawable.empty),
                 contentDescription = null,
                 modifier = Modifier.size(150.dp)
             )

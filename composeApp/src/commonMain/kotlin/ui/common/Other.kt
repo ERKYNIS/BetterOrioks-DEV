@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import betterorioks.composeapp.generated.resources.Res
 import betterorioks.composeapp.generated.resources.arrow_left
 import betterorioks.composeapp.generated.resources.back_button
-import betterorioks.composeapp.generated.resources.clouds
+import betterorioks.composeapp.generated.resources.empty
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import ui.theme.gradientColor1
@@ -89,7 +89,7 @@ fun EmptyItem(
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(Res.drawable.clouds),
+            painter = painterResource(Res.drawable.empty),
             contentDescription = null,
             modifier = Modifier.size(150.dp)
         )
