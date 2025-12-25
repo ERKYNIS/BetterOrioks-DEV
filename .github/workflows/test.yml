@@ -1,0 +1,15 @@
+name: Test GitHub Actions
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if Actions work
+        run: |
+          echo "✅ GitHub Actions работает!"
+          echo "Бранч: ${{ github.ref }}"
+          echo "Событие: ${{ github.event_name }}"
