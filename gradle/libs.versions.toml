@@ -1,0 +1,61 @@
+[versions]
+android-compileSdk = "36"
+android-minSdk = "24"
+android-targetSdk = "36"
+
+agp = "8.13.2"
+androidx-activityCompose = "1.12.2"
+compose-plugin = "1.9.3"
+kotlin = "2.3.0"
+navigationCompose = "2.9.1"
+kotlinx-datetime = "0.7.1"
+kotlinxSerializationJson = "1.9.0"
+ktor = "3.3.3"
+#noinspection GradleDependency
+androidxRoom = "2.8.4"
+#noinspection GradleDependency
+sqlite = "2.6.2"
+ksp = "2.3.4"
+koin = "4.1.1"
+preferencesDataStore = "1.2.0"
+kSoup = "0.2.0"
+work = "2.11.0"
+splash = "1.2.0"
+
+[libraries]
+androidx-work = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-splash = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
+
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime"}
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+androidx-datastore = { group = "androidx.datastore", name = "datastore", version.ref = "preferencesDataStore"}
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "preferencesDataStore" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
+
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+
+ksoup = { group = "com.fleeksoft.ksoup", name = "ksoup-lite", version.ref = "kSoup" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref ="kotlin" }
+room = { id = "androidx.room", version.ref = "androidxRoom" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
