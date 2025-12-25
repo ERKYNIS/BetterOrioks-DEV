@@ -3,6 +3,7 @@ name: Release Notification
 on:
   release:
     types: [published, released, created]
+  workflow_dispatch:
 
 jobs:
   notify-on-release:
@@ -17,4 +18,4 @@ jobs:
             ${{ github.event.release.name }}
             ${{ github.event.release.body }}
             
-            Скачать -> ${{ github.event.release.html_url }}j
+            Скачать -> ${{ github.event.release.html_url }}
