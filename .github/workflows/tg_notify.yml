@@ -1,10 +1,6 @@
 name: Release Notification
 
 on:
-  push:
-    tags:
-      - 'v*'
-    branches: [main]
   release:
     types: [published, released, created]
 
