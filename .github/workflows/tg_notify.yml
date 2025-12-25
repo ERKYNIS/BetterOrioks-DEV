@@ -1,20 +1,52 @@
-name: Release Notification
+name: Release APK Notification
 
 on:
   release:
     types: [published]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
-  notify-on-release:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Telegram Notification on New Release
+      - name: Find APK asset
+        id: find_apk
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            ASSETS="${{ toJSON(github.event.release.assets) }}"
+            echo "assets_json=$ASSETS" >> $GITHUB_OUTPUT
+          else
+            TAG_NAME=${GITHUB_REF#refs/tags/}
+            RESPONSE=$(curl -s \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME")
+            ASSETS=$(echo "$RESPONSE" | jq -r '.assets')
+            echo "assets_json=$ASSETS" >> $GITHUB_OUTPUT
+          fi
+          
+          APK_URL=$(echo "$ASSETS" | jq -r '.[] | select(.name | endswith(".apk")) | .browser_download_url // empty' | head -1)
+          
+          if [ -n "$APK_URL" ]; then
+            echo "apk_url=$APK_URL" >> $GITHUB_OUTPUT
+            echo "has_apk=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_apk=false" >> $GITHUB_OUTPUT
+            echo "apk_url=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Telegram notification with APK
         uses: cbrgm/telegram-github-action@v1
         with:
           token: ${{ secrets.BOT_TOKEN }}
           to: ${{ secrets.CHAT_ID }}
           message: |
-            ${{ github.event.release.name }}
+            🚀 Новый релиз: ${{ github.event.release.tag_name || steps.find_apk.outputs.tag_name }}
+            
+            📝 Описание: 
             ${{ github.event.release.body }}
             
-            Скачать -> ${{ github.event.release.html_url }}
+            ${{ steps.find_apk.outputs.has_apk == 'true' && format('📱 Скачать: {0}', steps.find_apk.outputs.apk_url) || '⚠️ APK не найден в релизе' }}
+            
+            🔗 Релиз: ${{ github.event.release.html_url }}
