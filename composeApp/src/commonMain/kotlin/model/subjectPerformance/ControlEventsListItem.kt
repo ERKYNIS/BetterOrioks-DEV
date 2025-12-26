@@ -44,7 +44,7 @@ sealed interface ControlEventsListItem {
         @Composable
         fun getWeeksLeftString(): String {
             return when (weeksLeft) {
-                in Int.MIN_VALUE..<0 -> stringResource(Res.string.weeks_before_event_passed)
+                in Int.MIN_VALUE..<0 -> stringResource(Res.string.weeks_before_event_passed) + "\n(" + controlEvent.week.toString() + stringResource(Res.string.week) + ')'
                 0 -> stringResource(Res.string.weeks_before_event_now) + "\n(" + controlEvent.week.toString() + stringResource(Res.string.week) + ')'
                 1 -> stringResource(Res.string.weeks_before_event_one) + "\n(" + controlEvent.week.toString() + stringResource(Res.string.week) + ')'
                 else -> {

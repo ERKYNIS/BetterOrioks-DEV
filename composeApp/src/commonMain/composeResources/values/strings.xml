@@ -7,6 +7,7 @@
     <string name="reload">Перезагрузить</string>
     <string name="Refresh">Перезагрузить</string>
     <string name="exit">Выйти</string>
+    <string name="dev_version">версия для тестирования</string>
     
     <!-- Authentication -->
     <string name="login">Номер студенческого билета</string>
@@ -108,8 +109,9 @@
     <string name="settings_title_functionality">Функциональность</string>
     <string name="settings_enable_force_notification_title">Уведомлять обо всех изменениях</string>
     <string name="settings_enable_force_notification_subtitle">При включенных уведомлениях, если настройка включена, вы будете получать уведомления обо всех событиях, включая те, которые вы уже могли видеть в приложении</string>
-    <string name="settings_title_developer">Developer settings</string>
+    <string name="settings_title_developer">Функции разработчика</string>
     <string name="settings_log_notification_activity_title">Log all notification activity</string>
+    <string name="settings_title_experimental">Экспериментальные функции</string>
     
     <!-- Social and external links -->
     <string name="social_telegram">Telegram-канал приложения</string>

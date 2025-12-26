@@ -3,6 +3,7 @@ package ui.settingsScreen
 import PlatformOs
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -29,6 +31,7 @@ import betterorioks.composeapp.generated.resources.Res
 import betterorioks.composeapp.generated.resources.adaptive_mode
 import betterorioks.composeapp.generated.resources.app_name
 import betterorioks.composeapp.generated.resources.dark_mode
+import betterorioks.composeapp.generated.resources.dev_version
 import betterorioks.composeapp.generated.resources.light_mode
 import betterorioks.composeapp.generated.resources.settings
 import betterorioks.composeapp.generated.resources.settings_enable_colored_borders_theme_subtitle
@@ -45,6 +48,7 @@ import betterorioks.composeapp.generated.resources.settings_theme_dark
 import betterorioks.composeapp.generated.resources.settings_theme_light
 import betterorioks.composeapp.generated.resources.settings_theme_system
 import betterorioks.composeapp.generated.resources.settings_title_developer
+import betterorioks.composeapp.generated.resources.settings_title_experimental
 import betterorioks.composeapp.generated.resources.settings_title_fun
 import betterorioks.composeapp.generated.resources.settings_title_functionality
 import betterorioks.composeapp.generated.resources.theme
@@ -184,17 +188,20 @@ fun HiddenSettings(
         modifier = Modifier.animateContentSize().fillMaxWidth()
     ) {
         if (uiState.showHiddenSettings) {
+            if(AppInfo.DEV_VERSION) ExperimentalSettings(
+                uiState = uiState,
+                viewModel = viewModel,
+            )
+
             FunSettings(
                 uiState = uiState,
                 viewModel = viewModel,
             )
 
-            if(stringResource(Res.string.app_name).contains("DEV")) {
-                DeveloperSettings(
-                    uiState = uiState,
-                    viewModel = viewModel,
-                )
-            }
+            if(AppInfo.DEV_VERSION) DeveloperSettings(
+                uiState = uiState,
+                viewModel = viewModel,
+            )
         }
     }
 }
@@ -238,6 +245,30 @@ fun DeveloperSettings(
         onClick = viewModel::setLogAllNotificationActivity,
         title = stringResource(Res.string.settings_log_notification_activity_title),
     )
+}
+
+@Composable
+fun ExperimentalSettings(
+    uiState: SettingsUiState,
+    viewModel: SettingsViewModel,
+    modifier: Modifier = Modifier
+) {
+    LargeSpacer()
+    SettingsTitle(
+        text = stringResource(Res.string.settings_title_experimental)
+    )
+    LargeSpacer()
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(
+            text = "Скоро всё будет \uD83D\uDE09",
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.labelSmall,
+            modifier = modifier.padding(16.dp)
+        )
+    }
 }
 
 @Composable
@@ -311,14 +342,13 @@ fun BuildInfo(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
-        var devstr = "";
-        if(stringResource(Res.string.app_name).contains("DEV")) {
-            devstr = ".dev";
-        }
+        var devstr = ""
+        if(AppInfo.DEV_VERSION) devstr = "\n" + stringResource(Res.string.dev_version)
 
         Text(
-            text = "${stringResource(Res.string.app_name)} ${AppInfo.VERSION}" + devstr + " for ${getPlatform().name}",
+            text = "${stringResource(Res.string.app_name)} ${AppInfo.VERSION} for ${getPlatform().name}" + devstr,
             modifier = modifier.clip(RoundedCornerShape(8.dp)).padding(horizontal = 2.dp).clickable(onClick = onClick),
+            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.labelSmall
         )
     }
